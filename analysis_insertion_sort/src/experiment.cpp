@@ -1,5 +1,11 @@
 #include "experiment.h"
 
+/**
+* Experiment class used to create a permutation of a vector and sort it using
+* insertion sort. Basic operations counter and exeuction time in seconds
+* are recorded and appended to a csv.
+* @param size size of vector to be created.
+*/
 Experiment::Experiment(int size) : size(size)
 {
     for(int i = 0; i < size; i++) {
@@ -17,6 +23,11 @@ Experiment::~Experiment()
     cout << "Experiment deleted" << endl;
 }
 
+/**
+* Called on an experiment object to sort the vector
+* and store the experimental results (operations, time)
+* as instance variables.
+*/
 void Experiment::run() {
     clock_t begin = clock();
     insertionSort();
@@ -27,12 +38,11 @@ void Experiment::run() {
     }
 }
 
-void Experiment::outputExpData() {
-    cout << "Input Size: " << size << endl
-    << "Basic Operations performed: " << basicOps << endl
-    << "Time taken: " << time << endl;
-}
-
+/**
+* Insertion sort algorithm
+* Implemented according to Levitin, A. (2012) Page 135.
+* Counts basic operations performed.
+*/
 void Experiment::insertionSort() {
     // basic operation counter
     int counter = 0;
@@ -50,27 +60,10 @@ void Experiment::insertionSort() {
     basicOps = counter;
 }
 
-void Experiment::outputSize() {
-    cout << "size: " << size << endl;
-}
-
-bool Experiment::isSorted() {
-    for(unsigned int i = 0; i < inputData.size() - 1; i++) {
-        if(inputData[i] > inputData[i+1]) {
-            return false;
-        }
-    }
-    return true;
-}
-
-void Experiment::outputInputData() {
-    cout << "inputData: " << endl;
-    for(unsigned int i = 0; i < inputData.size(); i++) {
-        cout << inputData[i] << endl;
-    }
-    cout << "---------------------" << endl;
-}
-
+/**
+* label the columns of the CSV. To be called
+* before any data is collected.
+*/
 void Experiment::writeHeader(string fileName) {
     ofstream dataFile;
     dataFile.open(fileName);
@@ -82,6 +75,10 @@ void Experiment::writeHeader(string fileName) {
     dataFile.close();
 }
 
+/**
+* Appends results of an experiment case to a CSV.
+* Only called after the Experiment.run().
+*/
 void Experiment::writeResults(std::string fileName) {
     ofstream dataFile;
     dataFile.open(fileName, ios::app);
@@ -94,6 +91,12 @@ void Experiment::writeResults(std::string fileName) {
     dataFile.close();
 }
 
+/**
+* Method used to inspect the permutations created
+* using the random_shuffle algorithm.
+* Vector of size 30 is created and shuffled 20 times.
+* Results appended to test file for inspection
+*/
 void Experiment::testRandomVector() {
     ofstream testFile;
     testFile.open("data/random_vector_test.txt");
@@ -126,4 +129,24 @@ void Experiment::testRandomVector() {
         }
         testFile << endl;
     }
+}
+
+/**
+* Debugging methods.
+*/
+void Experiment::outputSize() {
+    cout << "size: " << size << endl;
+}
+
+void Experiment::outputInputData() {
+    cout << "inputData: " << endl;
+    for(unsigned int i = 0; i < inputData.size(); i++) {
+        cout << inputData[i] << endl;
+    }
+    cout << "---------------------" << endl;
+
+}void Experiment::outputExpData() {
+    cout << "Input Size: " << size << endl
+    << "Basic Operations performed: " << basicOps << endl
+    << "Time taken: " << time << endl;
 }
