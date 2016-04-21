@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1461244307 source:c:\users\gigness\desktop\insertion_sort_analysis\analysis_insertion_sort\main.cpp
+	<iostream>
+	"experiment.h"
+	"experimentrunner.h"
+	<array>
+	<fstream>
+
+1461243785 c:\users\gigness\desktop\insertion_sort_analysis\analysis_insertion_sort\include\experiment.h
+	<algorithm>
+	<vector>
+	<ctime>
+	<iostream>
+	<string>
+	<fstream>
+
+1461240816 c:\users\gigness\desktop\insertion_sort_analysis\analysis_insertion_sort\include\experimentrunner.h
+	<string>
+	"experiment.h"
+
+1461240533 source:c:\users\gigness\desktop\insertion_sort_analysis\analysis_insertion_sort\src\experiment.cpp
+	"experiment.h"
+
+1461240570 source:c:\users\gigness\desktop\insertion_sort_analysis\analysis_insertion_sort\src\experimentrunner.cpp
+	"experimentrunner.h"
+
